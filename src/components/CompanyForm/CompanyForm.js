@@ -20,12 +20,12 @@ const CompanyForm = () => {
   };
 
   const handleSubmit = (event) => {
+    setFeedbackMessage(null);
     event.preventDefault();
 
-    let tempFeedbackMessage = null;
-    DataValidator(name, (message)=> tempFeedbackMessage = message, email, isActive, companyCode);
+    DataValidator(name, setFeedbackMessage, email, isActive, companyCode);
 
-    if (tempFeedbackMessage == null) {
+    if (feedbackMessage == null) {
       sendDataToCache(
         name,
         companyCode,
@@ -41,8 +41,6 @@ const CompanyForm = () => {
       var form = document.getElementById('companyForm');
       form.reset();
       setCompanyCode(undefined);
-    } else {
-      setFeedbackMessage(tempFeedbackMessage);
     }
   };
 
